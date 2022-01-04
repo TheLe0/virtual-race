@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NUM_OF_LAPS: ${{ secrets.NUM_OF_LAPS }}
     strategy:
       max-parallel: 4
     steps:
