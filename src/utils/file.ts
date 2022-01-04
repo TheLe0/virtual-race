@@ -1,11 +1,13 @@
 import * as fs from 'fs';
+import { Path } from '.';
 
 export default class File {
-    public static read(path: string): Array<string[]> {
+    public static read(relativePath: string): Array<string[]> {
 
         const list = new Array<string[]>();
 
-        console.log(__dirname);
+        const path = Path.getRootPath()+"/"+relativePath;
+
         let buffer = fs.readFileSync(path, 'utf8');
         buffer = buffer.replace("\t", " ");
 
