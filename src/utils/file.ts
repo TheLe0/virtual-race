@@ -1,5 +1,8 @@
 import * as fs from 'fs';
 import { Path } from '.';
+import { makeLogger } from '../log';
+
+const logger = makeLogger(); 
 
 export default class File {
     public static read(relativePath: string): Array<string[]> {
@@ -9,6 +12,10 @@ export default class File {
         const path = Path.getRootPath()+"/"+relativePath;
 
         if (!fs.existsSync(path)) {
+            logger.error({
+                type: 'LOG_TYPE_1',
+                message: `File not found on ${path}`
+            });
             return undefined;
         }
 
