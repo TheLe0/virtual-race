@@ -7,8 +7,7 @@
   "author": "TheLe0 <leob.tosin@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:dev": "ts-node-dev --respawn  src/app.ts | pino-pretty",
-    "start:prod": "set NODE_ENV=production && tsc && node dist/app.js",
+    "start": "ts-node-dev --respawn src/app.ts | pino-pretty",
     "test": "jest -setupFiles dotenv/config"
   },
   "devDependencies": {
@@ -26,7 +25,6 @@
   },
   "dependencies": {
     "dotenv": "ˆ10.0.0",
-    "express": "^4.16.3",
     "pino": "^6.13.2"
   }
 }
