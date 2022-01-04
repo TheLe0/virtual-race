@@ -1,4 +1,3 @@
-import { Server } from './server';
+import { File } from './utils';
 
-const server = new Server();
-server.start();
+const list = File.read("data/log.txt")
