@@ -1,3 +1,3 @@
-import { Race } from './handlers';
+import { Race } from './controller';
 
 new Race().start();
