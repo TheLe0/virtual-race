@@ -8,6 +8,10 @@ export default class File {
 
         const path = Path.getRootPath()+"/"+relativePath;
 
+        if (!fs.existsSync(path)) {
+            return undefined;
+        }
+
         let buffer = fs.readFileSync(path, 'utf8');
         buffer = buffer.replace("\t", " ");
 

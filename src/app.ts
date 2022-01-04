@@ -1,3 +1,3 @@
-import { File } from './utils';
+import { Race } from './handlers';
 
-const list = File.read("data/log.txt")
+new Race().start();
