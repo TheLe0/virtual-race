@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev --respawn src/app.ts | pino-pretty",
-    "test": "jest -setupFiles dotenv/config"
+    "test": "jest -setupFiles dotenv/config --coverage"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
