@@ -1,3 +1,3 @@
 import { Race } from './controller';
 
-new Race().start();
+new Race("data/log.txt").start();
