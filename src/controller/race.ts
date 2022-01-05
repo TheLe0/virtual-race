@@ -4,8 +4,8 @@ export default class Race {
 
     private readonly list :string[][];
 
-    constructor() {
-        this.list = File.read("data/log.txt");
+    constructor(filePath: string) {
+        this.list = File.read(filePath);
     }
 
     public start() {
