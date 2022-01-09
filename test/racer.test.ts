@@ -40,6 +40,7 @@ test('Object set and get complete test', () => {
     driver.fastestLap = Time.convertLapTimeToMilliseconds("1:02.852");
     driver.fastestLap = Time.convertLapTimeToMilliseconds("1:07.852");
     driver.finishTime = Time.convertHourToMilliseconds("23:49:08.277");
+    driver.startTime = Time.convertHourToMilliseconds("23:49:08.277");
 
     expect(driver.name).toBe("F.MASSA");
     expect(driver.racerNumber).toBe("038");
@@ -47,4 +48,5 @@ test('Object set and get complete test', () => {
     expect(driver.speed).toBe(90);
     expect(driver.fastestLap).toBe(62852);
     expect(driver.finishTime).toBe(85748277);
+    expect(driver.startTime).toBe(85748277);
 });
