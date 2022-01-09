@@ -33,14 +33,16 @@ test('fastest lap undefined test', () => {
 
 test('Object set and get complete test', () => {
 
-    driver.name = "038 – F.MASSA";
+    driver.name = "F.MASSA";
+    driver.racerNumber = "038";
     driver.lap = 4;
     driver.speed = Speed.converSpeedToNumber("360,000");
     driver.fastestLap = Time.convertLapTimeToMilliseconds("1:02.852");
     driver.fastestLap = Time.convertLapTimeToMilliseconds("1:07.852");
     driver.finishTime = Time.convertHourToMilliseconds("23:49:08.277");
 
-    expect(driver.name).toBe("038 – F.MASSA");
+    expect(driver.name).toBe("F.MASSA");
+    expect(driver.racerNumber).toBe("038");
     expect(driver.lap).toBe(4);
     expect(driver.speed).toBe(90);
     expect(driver.fastestLap).toBe(62852);

@@ -1,5 +1,6 @@
 export default class Racer {
     private _name: string;
+    private _racerNumber: string;
     private _speed: number;
     private _laps: number;
     private _fastestLap: number;
@@ -19,6 +20,14 @@ export default class Racer {
 
     public set name(name: string) {
         this._name = name;
+    }
+
+    public get racerNumber() {
+        return this._racerNumber;
+    }
+
+    public set racerNumber(number :string) {
+        this._racerNumber = number;
     }
 
     public get speed() {
