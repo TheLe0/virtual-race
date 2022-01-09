@@ -1,19 +1,59 @@
 export default class Racer {
-    public name: string;
-    public laps: number;
-    public speed: number;
-    public fastestLap: number;
-    public position: number;
-    public finishTime: number;
+    private _name: string;
+    private _speed: number;
+    private _laps: number;
+    private _fastestLap: number;
+    private _finishTime: number;
 
-    public averageSpeed(): number {
-        return this.speed / this.laps;
+    constructor() {
+        this._speed = 0;
     }
 
-    public isFastestLap(lapTime: number) {
+    private averageSpeed(): number {
+        return this._speed / this._laps;
+    }
 
-        if (lapTime < this.fastestLap || this.fastestLap == undefined) {
-            this.fastestLap = lapTime;
+    public get name() {
+        return this._name;
+    }
+
+    public set name(name: string) {
+        this._name = name;
+    }
+
+    public get speed() {
+        return this.averageSpeed();
+    }
+
+    public set speed(speed: number) {
+        this._speed += speed;
+    }
+
+    public get lap() {
+        return this._laps;
+    }
+
+    public set lap(laps: number) {
+        if (this._laps < laps || this._laps == undefined) {
+            this._laps = laps;
         }
+    }
+
+    public get fastestLap() {
+        return this._fastestLap;
+    }
+
+    public set fastestLap(lapTime :number) {
+        if (lapTime < this._fastestLap || this._fastestLap == undefined) {
+            this._fastestLap = lapTime;
+        }
+    }
+
+    public get finishTime() {
+        return this._finishTime;
+    }
+
+    public set finishTime(currentTime :number) {
+        this._finishTime = currentTime;
     }
 }
