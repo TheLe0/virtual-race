@@ -21,19 +21,35 @@ export default class File {
 
         let buffer = fs.readFileSync(path, 'utf8');
         buffer = buffer.replace("\t", " ");
+        buffer = buffer.replace("\r", "");
 
         const lines = buffer.split('\n');
-
+        
         for (let i = 0; i < lines.length; i++) {
 
-            const line = lines[i].split(" ");
-
+            const line = this.formatLine(lines[i].split(" "));
             if (line.length > 0) {
+
                 list.push(line);
             }
         }
 
         return list;
+    }
+
+    private static formatLine(line: string[]) :string[] {
+
+        let lineFormated = Array<string>();
+
+        line.forEach(element => {
+
+            if (element != "" && element != "–") {
+                element = element.replace("\r", "");
+                lineFormated.push(element);
+            }
+        });
+
+        return lineFormated;
     }
 
 }
