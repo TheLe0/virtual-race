@@ -4,6 +4,7 @@ export default class Racer {
     private _speed: number;
     private _laps: number;
     private _fastestLap: number;
+    private _startTime :number;
     private _finishTime: number;
 
     constructor() {
@@ -64,5 +65,13 @@ export default class Racer {
 
     public set finishTime(currentTime :number) {
         this._finishTime = currentTime;
+    }
+
+    public get startTime() {
+        return this._startTime;
+    }
+
+    public set startTime(currentTime :number) {
+        this._startTime = currentTime;
     }
 }
