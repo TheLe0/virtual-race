@@ -30,6 +30,24 @@ export default class Grid {
         return pilot;
     }
 
+    public fastestLap() :Racer {
+
+        let fastestRacer = undefined;
+
+        this.list.forEach(racer => {
+            if (fastestRacer == undefined) {
+                fastestRacer = racer;
+            } else {
+                if (racer.fastestLap < fastestRacer.fastestLap) {
+                    fastestRacer = racer;
+                }
+            }
+        });
+
+        return fastestRacer;
+
+    }
+
     private updateRacer(pilot: Racer) :boolean {
 
         let registerUpdated = false;
@@ -89,6 +107,7 @@ export default class Grid {
             }
         }
         else {
+            console.log(line);
             logger.error({
                 type: 'LOG_TYPE_1',
                 message: `The line is not in the correct format: ${line}`

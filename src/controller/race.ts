@@ -1,4 +1,4 @@
-import { File } from '../utils';
+import { File, Time } from '../utils';
 import { Grid } from '../repository';
 
 export default class Race {
@@ -13,5 +13,20 @@ export default class Race {
 
     public start() {
         
+        if (this.list != undefined) {
+            this.run();
+            this.outputResults();
+        }
+    }
+
+    private run() {
+        this.list.forEach(element => {
+            this.repository.upsertRacer(element);
+        });
+    }
+
+    private outputResults() {
+        const fastestRacer = this.repository.fastestLap();
+        console.log(`Fastest Lap: ${fastestRacer.racerNumber}-${fastestRacer.name}: ${Time.convertMillisecondsToLapTime(fastestRacer.fastestLap)}`);
     }
 }
