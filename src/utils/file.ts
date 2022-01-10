@@ -45,6 +45,9 @@ export default class File {
 
             if (element != "" && element != "–") {
                 element = element.replace("\r", "");
+                element = element.replace("\t", " ");
+                element = element.replace("\t\t", " ");
+                element = element.replace("\t\t\t", " ");
                 lineFormated.push(element);
             }
         });
