@@ -20,14 +20,15 @@ export default class File {
         }
 
         let buffer = fs.readFileSync(path, 'utf8');
-        buffer = buffer.replace("\t", " ");
+        buffer = buffer.replace(" – ", "\t");
         buffer = buffer.replace("\r", "");
 
         const lines = buffer.split('\n');
         
         for (let i = 0; i < lines.length; i++) {
 
-            const line = this.formatLine(lines[i].split(" "));
+            const line = this.formatLine(lines[i].split("\t"));
+
             if (line.length > 0) {
 
                 list.push(line);
@@ -40,15 +41,22 @@ export default class File {
     private static formatLine(line: string[]) :string[] {
 
         let lineFormated = Array<string>();
+        
 
         line.forEach(element => {
 
+            element = element.replace("\r", "");
+
             if (element != "" && element != "–") {
-                element = element.replace("\r", "");
-                element = element.replace("\t", " ");
-                element = element.replace("\t\t", " ");
-                element = element.replace("\t\t\t", " ");
-                lineFormated.push(element);
+                
+                if (element.includes(" – ")) {
+                    const pilot = element.split(" – ");
+
+                    lineFormated.push(pilot[0]);
+                    lineFormated.push(pilot[1]);
+                } else {
+                    lineFormated.push(element);
+                }
             }
         });
 
