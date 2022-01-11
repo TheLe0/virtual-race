@@ -2,6 +2,7 @@ import { Racer } from '../model';
 import { makeLogger } from '../log';
 import { Time, Speed } from '../utils';
 import { RaceEnvVars } from '../config';
+import { IRacer } from '../contract';
 
 const logger = makeLogger(); 
 
@@ -46,6 +47,46 @@ export default class Grid {
 
         return fastestRacer;
 
+    }
+
+    public listFinalGrid() :Array<IRacer> {
+
+        const gridList = Array<IRacer>();
+        let counterPosition = 1;
+        let difference = 0;
+
+        this.list = this.list.sort((n1, n2) => {
+
+            if (n1.finishTime > n2.finishTime && n1.finishTime != undefined) {
+                return 1;
+            } else if (n2.finishTime > n1.finishTime && n2.finishTime != undefined) {
+                return -1;
+            }
+
+            return 0;
+        });
+
+        this.list.forEach(racer => {
+     
+            if (counterPosition > 1 && racer.finishTime != undefined) {
+                difference += (racer.finishTime - racer.startTime);
+            }
+
+            gridList.push({
+                position: counterPosition,
+                name: racer.name,
+                racerNumber: racer.racerNumber,
+                laps: racer.lap,
+                totalDrivingTime: (racer.finishTime == undefined) ? "Not completed" : Time.convertMillisecondsToHour(racer.finishTime - racer.startTime),
+                fastestLap: Time.convertMillisecondsToLapTime(racer.fastestLap),
+                averageSpeed: Speed.convertSpeedToString(racer.speed),
+                difference: (racer.finishTime == undefined) ? "Not completed" :  Time.convertMillisecondsToHour(difference)
+            });
+
+            counterPosition++;
+        });
+
+        return gridList;
     }
 
     private updateRacer(pilot: Racer) :boolean {
