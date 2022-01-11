@@ -1,5 +1,8 @@
 import { File, Time } from '../utils';
 import { Grid } from '../repository';
+import { makeLogger } from '../log';
+
+const logger = makeLogger(); 
 
 export default class Race {
 
@@ -11,11 +14,19 @@ export default class Race {
         this.repository = new Grid();
     }
 
-    public start() {
+    public start() :boolean {
         
-        if (this.list != undefined) {
+        if (this.list.length > 0) {
             this.run();
             this.outputResults();
+            return true;
+        } else {
+            logger.error({
+                type: 'LOG_TYPE_1',
+                message: `The analysis could not be made, the list was empty!`
+            });
+
+            return false;
         }
     }
 
