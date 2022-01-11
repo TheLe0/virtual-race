@@ -6,4 +6,5 @@ export default interface IRacer {
     totalDrivingTime: string;
     fastestLap: string;
     averageSpeed: string;
+    difference: string;
 }
