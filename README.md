@@ -1,6 +1,13 @@
-PROBLEMA
-========
-Dado o seguinte log de uma corrida de Kart:
+# Virtual Race
+
+This application analysis the results of a race by a log file containing each driver lap stats. 
+The application is a command-line application and all the data is persisted on the memory of the runtime. 
+
+## Input data
+
+The log file with the data to be analised must be on the ```data``` directory with the name ```log.txt```. If you want to change the name of the file or the directory, only needs to be changed on the parameter on the ```app.ts``` file.
+
+The file must be with the following format:
 
 ```text
 Hora                               Piloto             Nº Volta   Tempo Volta       Velocidade média da volta
@@ -30,23 +37,76 @@ Hora                               Piloto             Nº Volta   Tempo Volta   
 
 ```
 
-Resultado esperado
-------------------
-* A partir de um input de um arquivo de log do formato acima, montar o resultado da corrida com as seguintes informações: **Posição Chegada**, **Código Piloto**, **Nome Piloto**, **Qtde Voltas Completadas** e **Tempo Total de Prova**.
+>Note:
+>In the file you must remove the header line.
 
-Observações
-------------
-* A corrida termina quando o primeiro colocado completa 4 voltas
 
-Bônus
------
-Não obrigatório. Faça apenas caso se identifique com o problema ou se achar que há algo interessante a ser mostrado na solução
+## Output
 
-**********************************************
-* Descobrir a melhor volta de cada piloto
-***********************************************
-* Descobrir a melhor volta da corrida
-************************************************
-* Calcular a velocidade média de cada piloto durante toda corrida
-************************************************************************
-* Descobrir quanto tempo cada piloto chegou após o vencedor
+After the execution, is going to be printing something like this on the console:
+
+![Print](./images/output_on_console.png)
+
+
+## Configuration
+
+For run this application you must have installed on your machine:
+
+* Node
+* Yarn
+
+You must create a ```.env``` file on the project root, with the same variables on the ```.env-example```.
+Has only one enviroment variable named ```NUM_OF_LAPS```, that is to specify the number of the laps of the race, in this case was used as ```4```.
+
+If is already installed on your machine, just run the following command to install the dependencies:
+
+```bash
+yarn
+```
+
+And after for running the application:
+
+```bash
+yarn start
+```
+
+## Architeture
+
+The software was built using the clean architeture principles. Resulting in a application with low coupling and resilient. 
+
+The application is separated in modules, each one doing some functionality and independent of each other. This helps for future grow of the project and new implementations without need of rewrite the whole application.
+
+In the following is an ilustrated represention of how the geeral architeture works in this application:
+
+![Architeture](./images/architeture.png)
+
+On the input, the application start on the most external layer and goes to the most internal one. And as the response goes to the opposite direction, returning to where it started.
+
+Here is some information about the modules on this application:
+
+* <b>config</b>: Where is loaded all the enviroment variables on the ```.env``` file;
+* <b>contract</b>: Contain some interfaces used as data types that flows the data between the modules. This strategy is used to prevent circular dependencies on the modules;
+* <b>controller</b>: Responsible to input the commands of the user and output the responses information;
+* <b>log</b>: Classes used to create the logs on the application, to inform errors and issues on the application;
+* <b>model</b>: The entities of the application, when all the business rules are managed;
+* <b>repository</b>: Where is stored the data and all the persistances operations are made;
+* <b>utils</b>: Utilitary classes that help to do some small operations that are not directly envolved on the general logic of the app.
+
+## Tests
+
+The application was made using the TDD (Test Drive Development) approach, testing each functionality and situation competly isolated of the rest, all the logic was built starting by the tests. This helps the development be more centered on building a solid logic of the application and after manage how it flows.
+
+The tests coverage a total of <b>99%</b> of the functionalities of the application. Coveraging all the situations and the logics possible to this implementation. 
+
+You can run the tests with the following command:
+
+```bash
+yarn test
+```
+
+The output of the test is going to be like this:
+
+![Tests](./images/tests.png)
+
+The use of tests is very important on the now-a-days software development, because with them when you make changes on the code, you are going to be a warranty if this will break some other logic or not.
+
