@@ -24,6 +24,7 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "ascii-table": "^0.0.9",
     "dotenv": "ˆ10.0.0",
     "pino": "^6.13.2"
   }

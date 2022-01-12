@@ -31,7 +31,7 @@ export default class Grid {
         return pilot;
     }
 
-    public fastestLap() :Racer {
+    public fastestLap() :IRacer {
 
         let fastestRacer = undefined;
 
@@ -45,7 +45,16 @@ export default class Grid {
             }
         });
 
-        return fastestRacer;
+        return {
+            position: 0,
+            name: fastestRacer.name,
+            racerNumber: fastestRacer.racerNumber,
+            laps: fastestRacer.lap,
+            totalDrivingTime: (fastestRacer.finishTime == undefined) ? "Not completed" : Time.convertMillisecondsToHour(fastestRacer.finishTime - fastestRacer.startTime),
+            fastestLap: Time.convertMillisecondsToLapTime(fastestRacer.fastestLap),
+            averageSpeed: Speed.convertSpeedToString(Number(fastestRacer.speed.toFixed(3))),
+            difference: ""
+        };
 
     }
 
@@ -79,7 +88,7 @@ export default class Grid {
                 laps: racer.lap,
                 totalDrivingTime: (racer.finishTime == undefined) ? "Not completed" : Time.convertMillisecondsToHour(racer.finishTime - racer.startTime),
                 fastestLap: Time.convertMillisecondsToLapTime(racer.fastestLap),
-                averageSpeed: Speed.convertSpeedToString(racer.speed),
+                averageSpeed: Speed.convertSpeedToString(Number(racer.speed.toFixed(3))),
                 difference: (racer.finishTime == undefined) ? "Not completed" :  Time.convertMillisecondsToHour(difference)
             });
 
