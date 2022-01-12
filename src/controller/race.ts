@@ -1,6 +1,7 @@
-import { File, Time } from '../utils';
+import { File } from '../utils';
 import { Grid } from '../repository';
 import { makeLogger } from '../log';
+import { ConsoleOutputPrint } from '../view';
 
 const logger = makeLogger(); 
 
@@ -37,13 +38,10 @@ export default class Race {
     }
 
     private outputResults() {
-        console.log("\n-------------------------      RACE    RESULTS: ------------------------------------------------------\n")
-        const fastestRacer = this.repository.fastestLap();
-        console.log(`Fastest Lap: ${fastestRacer.racerNumber} - ${fastestRacer.name}: ${Time.convertMillisecondsToLapTime(fastestRacer.fastestLap)}\n`);
+        console.log(ConsoleOutputPrint.printHeader());
 
-        console.log("Position   |   Racer   |   Completed Laps     |        Fastest Lap     |       Average Speed       |       Total Time on race  |   Difference")
-        this.repository.listFinalGrid().forEach(racer => {
-            console.log(`${racer.position}  ${racer.racerNumber} - ${racer.name}            ${racer.laps}   ${racer.fastestLap}     ${racer.averageSpeed}   ${racer.totalDrivingTime}       ${racer.difference} `);
-        });
+        const fastestRacer = this.repository.fastestLap();
+        console.log(ConsoleOutputPrint.fastestLap(fastestRacer));
+        console.log(ConsoleOutputPrint.printFinalGrid(this.repository.listFinalGrid()));
     }
 }

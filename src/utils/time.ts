@@ -32,6 +32,8 @@ export default class Time {
 
         let  milliseconds =  String(divisionRest % this.millisecondsInASecond);
 
+        milliseconds = milliseconds.padStart(3, "0");
+
         return `${minutes}:${seconds}.${milliseconds}`;
     }
 
@@ -71,7 +73,7 @@ export default class Time {
 
         let  milliseconds =  String(divisionRest % this.millisecondsInASecond);
 
-        milliseconds = milliseconds.padStart(2, "0");
+        milliseconds = milliseconds.padStart(3, "0");
 
         return `${hours}:${minutes}:${seconds}.${milliseconds}`;
     } 
