@@ -89,6 +89,7 @@ Here is some information about the modules on this application:
 * <b>controller</b>: Responsible to input the commands of the user and output the responses information;
 * <b>log</b>: Classes used to create the logs on the application, to inform errors and issues on the application;
 * <b>model</b>: The entities of the application, when all the business rules are managed;
+* <b>view</b>: Where is going to format and style the UI that is going to output the data for the user;
 * <b>repository</b>: Where is stored the data and all the persistances operations are made;
 * <b>utils</b>: Utilitary classes that help to do some small operations that are not directly envolved on the general logic of the app.
 
@@ -107,6 +108,7 @@ yarn test
 The output of the test is going to be like this:
 
 ![Tests](./images/tests.png)
+![Tests Results](./images/tests_results.png)
 
 The use of tests is very important on the now-a-days software development, because with them when you make changes on the code, you are going to be a warranty if this will break some other logic or not.
 
