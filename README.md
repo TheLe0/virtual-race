@@ -52,22 +52,17 @@ After the execution, is going to be printing something like this on the console:
 
 For run this application you must have installed on your machine:
 
-* Node
-* Yarn
+* [Node](https://nodejs.org/en/download/)
+* [Yarn](https://yarnpkg.com/getting-started/install)
+* [Make](https://www.gnu.org/software/make/)
 
 You must create a ```.env``` file on the project root, with the same variables on the ```.env-example```.
 Has only one enviroment variable named ```NUM_OF_LAPS```, that is to specify the number of the laps of the race, in this case was used as ```4```.
 
-If is already installed on your machine, just run the following command to install the dependencies:
+If is already installed on your machine, just run the following command to install the dependencies and after run the application:
 
 ```bash
-yarn
-```
-
-And after for running the application:
-
-```bash
-yarn start
+make run
 ```
 
 ## Architeture
@@ -102,7 +97,7 @@ The tests coverage a total of <b>99%</b> of the functionalities of the applicati
 You can run the tests with the following command:
 
 ```bash
-yarn test
+make tests
 ```
 
 The output of the test is going to be like this:
